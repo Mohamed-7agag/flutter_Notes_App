@@ -1,14 +1,7 @@
-// ignore_for_file: prefer_const_constructors, unused_import, prefer_const_literals_to_create_immutables, sort_child_properties_last, sized_box_for_whitespace, body_might_complete_normally_nullable, unused_local_variable, avoid_print, use_build_context_synchronously
+// ignore_for_file:sort_child_properties_last, sized_box_for_whitespace, body_might_complete_normally_nullable, unused_local_variable, avoid_print, use_build_context_synchronously
 
 import 'package:flutter/material.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
-
-import 'package:google_sign_in/google_sign_in.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 
 class Register extends StatefulWidget {
@@ -70,7 +63,7 @@ class _RegisterState extends State<Register> {
       child: Scaffold(
         body: Container(
           width: double.infinity,
-          padding: EdgeInsets.all(15),
+          padding: const EdgeInsets.all(15),
           child: ListView(
             children: [
               Container(
@@ -79,18 +72,18 @@ class _RegisterState extends State<Register> {
                   "assets/images/note.png",
                 ),
               ),
-              Text(
+              const Text(
                 "Register",
-                style: TextStyle(fontSize: 35, color: Colors.blue),
+                style: TextStyle(fontSize: 30, color: Colors.blue),
               ),
-              SizedBox(
-                height: 15,
+              const SizedBox(
+                height: 12,
               ),
               Text(
                 "Add Your Personal Information",
-                style: TextStyle(fontSize: 16, color: Colors.grey[700]),
+                style: TextStyle(fontSize: 14, color: Colors.grey[700]),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 30,
               ),
               Form(
@@ -107,15 +100,18 @@ class _RegisterState extends State<Register> {
                       },
                       decoration: InputDecoration(
                           hintText: "Enter Your Name",
-                          prefixIcon: Icon(
+                          contentPadding:
+                              const EdgeInsets.symmetric(vertical: 16),
+                          hintStyle: const TextStyle(fontSize: 13),
+                          prefixIcon: const Icon(
                             Icons.person_outlined,
-                            size: 28,
+                            size: 25,
                           ),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(50),
                           )),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     TextFormField(
@@ -127,15 +123,18 @@ class _RegisterState extends State<Register> {
                       },
                       decoration: InputDecoration(
                           hintText: "Enter Your Email",
-                          prefixIcon: Icon(
+                          contentPadding:
+                              const EdgeInsets.symmetric(vertical: 16),
+                          hintStyle: const TextStyle(fontSize: 13),
+                          prefixIcon: const Icon(
                             Icons.email_outlined,
-                            size: 28,
+                            size: 25,
                           ),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(50),
                           )),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     TextFormField(
@@ -148,9 +147,12 @@ class _RegisterState extends State<Register> {
                       obscureText: true,
                       decoration: InputDecoration(
                           hintText: "Enter Your Password",
-                          prefixIcon: Icon(
+                          contentPadding:
+                              const EdgeInsets.symmetric(vertical: 16),
+                          hintStyle: const TextStyle(fontSize: 13),
+                          prefixIcon: const Icon(
                             Icons.lock_outlined,
-                            size: 28,
+                            size: 25,
                           ),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(50),
@@ -159,41 +161,41 @@ class _RegisterState extends State<Register> {
                   ],
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               ElevatedButton(
                 onPressed: () async {
                   await createuser();
                 },
-                child: Text(
+                child: const Text(
                   "Register",
-                  style: TextStyle(fontSize: 25),
+                  style: TextStyle(fontSize: 20),
                 ),
                 style: ButtonStyle(
                     padding: MaterialStateProperty.all(
-                      EdgeInsets.symmetric(vertical: 13.5),
+                      const EdgeInsets.symmetric(vertical: 13.5),
                     ),
                     shape: MaterialStateProperty.all(RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(50)))),
               ),
-              SizedBox(
-                height: 20,
+              const SizedBox(
+                height: 25,
               ),
               Row(
                 children: [
-                  Text(
+                  const Text(
                     "have An Account?  ",
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                    style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
                   ),
                   InkWell(
                     onTap: () {
                       Navigator.of(context).pushReplacementNamed("Login");
                     },
-                    child: Text(
+                    child: const Text(
                       "Login",
                       style: TextStyle(
-                          fontSize: 16,
+                          fontSize: 14,
                           fontWeight: FontWeight.w500,
                           color: Colors.blue,
                           decoration: TextDecoration.underline),

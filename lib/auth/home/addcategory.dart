@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, sort_child_properties_last, avoid_print, body_might_complete_normally_nullable, dead_code, unnecessary_brace_in_string_interps, use_build_context_synchronously
+// ignore_for_file: sort_child_properties_last, avoid_print, body_might_complete_normally_nullable, dead_code, unnecessary_brace_in_string_interps, use_build_context_synchronously
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -22,11 +22,10 @@ class _AddCategoryState extends State<AddCategory> {
   addcategory() async {
     if (mykey.currentState!.validate()) {
       try {
-        
         await categories.add(
             {"name": name.text, "id": FirebaseAuth.instance.currentUser!.uid});
-        
-        Navigator.of(context).pushReplacementNamed("Homepage");
+
+        Navigator.of(context).pushNamedAndRemoveUntil("Homepage", (route) => false);
       } catch (e) {
         print("-----------------${e}----------------");
       }
@@ -39,11 +38,14 @@ class _AddCategoryState extends State<AddCategory> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Add Category"),
+        title: const Text(
+          "Add Category",
+          style: TextStyle(fontSize: 18),
+        ),
         centerTitle: true,
       ),
       body: Container(
-        padding: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
+        padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
         width: double.infinity,
         child: Column(
           children: [
@@ -58,27 +60,28 @@ class _AddCategoryState extends State<AddCategory> {
                 },
                 decoration: InputDecoration(
                     hintText: "Category Name",
-                    contentPadding:
-                        EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                    hintStyle: const TextStyle(fontSize: 14),
+                    contentPadding: const EdgeInsets.symmetric(
+                        horizontal: 20, vertical: 16),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(50),
                     )),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             ElevatedButton(
               onPressed: () {
                 addcategory();
               },
-              child: Text(
+              child: const Text(
                 "Add",
-                style: TextStyle(fontSize: 25),
+                style: TextStyle(fontSize: 22),
               ),
               style: ButtonStyle(
                   padding: MaterialStateProperty.all(
-                    EdgeInsets.symmetric(vertical: 14.5, horizontal: 75),
+                    const EdgeInsets.symmetric(vertical: 13, horizontal: 60),
                   ),
                   shape: MaterialStateProperty.all(RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(50)))),

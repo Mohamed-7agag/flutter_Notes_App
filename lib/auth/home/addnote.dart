@@ -1,6 +1,7 @@
-// ignore_for_file: prefer_const_constructors, prefer_typing_uninitialized_variables, non_constant_identifier_names, body_might_complete_normally_nullable, sort_child_properties_last, unnecessary_brace_in_string_interps, avoid_print, use_build_context_synchronously
+// ignore_for_file: prefer_typing_uninitialized_variables, non_constant_identifier_names, body_might_complete_normally_nullable, sort_child_properties_last, unnecessary_brace_in_string_interps, avoid_print, use_build_context_synchronously
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_notes/auth/home/notes.dart';
 
@@ -25,8 +26,10 @@ class _AddNoteState extends State<AddNote> {
     if (mykey.currentState!.validate()) {
       try {
         await notes.add(
-            {"title": title.text, "note": note.text, "doc_id": widget.doc_id});
-        Navigator.of(context).push(MaterialPageRoute(
+            {"title": title.text, "note": note.text, "doc_id": widget.doc_id,
+            
+            });
+        Navigator.of(context).pushReplacement(MaterialPageRoute(
           builder: (context) => Notes(
             doc_id: widget.doc_id,
           ),
@@ -43,75 +46,77 @@ class _AddNoteState extends State<AddNote> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Add Note"),
+        title: const Text("Add Note"),
         centerTitle: true,
       ),
       body: Container(
-        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 30),
-        child: Column(
-          children: [
-            Form(
-              key: mykey,
-              autovalidateMode: AutovalidateMode.always,
-              child: Column(
-                children: [
-                  TextFormField(
-                    controller: title,
-                    validator: (value) {
-                      if (value == "") {
-                        return "Required";
-                      }
-                    },
-                    maxLength: 30,
-                    decoration: InputDecoration(
-                        hintText: "Title",
-                        prefixIcon: Icon(
-                          Icons.title,
-                          size: 28,
-                        ),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(50),
-                        )),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  TextFormField(
-                    controller: note,
-                    validator: (value) {
-                      if (value == "") {
-                        return "Required";
-                      }
-                    },
-                    maxLines: 6,
-                    decoration: InputDecoration(
-                        hintText: "Note",
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(25),
-                        )),
-                  ),
-                ],
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 30),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Form(
+                key: mykey,
+                autovalidateMode: AutovalidateMode.always,
+                child: Column(
+                  children: [
+                    TextFormField(
+                      controller: title,
+                      validator: (value) {
+                        if (value == "") {
+                          return "Required";
+                        }
+                      },
+                      maxLength: 30,
+                      decoration: InputDecoration(
+                          hintText: "Title",
+                          prefixIcon: const Icon(
+                            Icons.title,
+                            size: 28,
+                          ),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(50),
+                          )),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    TextFormField(
+                      controller: note,
+                      validator: (value) {
+                        if (value == "") {
+                          return "Required";
+                        }
+                      },
+                      maxLines: 6,
+                      decoration: InputDecoration(
+                          hintText: "Note",
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(25),
+                          )),
+                    ),
+                  ],
+                ),
               ),
-            ),
-            SizedBox(
-              height: 35,
-            ),
-            ElevatedButton(
-              onPressed: () {
-                addnote();
-              },
-              child: Text(
-                "Add",
-                style: TextStyle(fontSize: 25),
+              const SizedBox(
+                height: 35,
               ),
-              style: ButtonStyle(
-                  padding: MaterialStateProperty.all(
-                    EdgeInsets.symmetric(vertical: 15, horizontal: 65),
-                  ),
-                  shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(50)))),
-            ),
-          ],
+              ElevatedButton(
+                onPressed: () {
+                  addnote();
+                },
+                child: const Text(
+                  "Add",
+                  style: TextStyle(fontSize: 22),
+                ),
+                style: ButtonStyle(
+                    padding: MaterialStateProperty.all(
+                      const EdgeInsets.symmetric(vertical: 13, horizontal: 60),
+                    ),
+                    shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(50)))),
+              ),
+            ],
+          ),
         ),
       ),
     );

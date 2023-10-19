@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, prefer_typing_uninitialized_variables
+// ignore_for_file: prefer_typing_uninitialized_variables
 
 import 'package:flutter/material.dart';
 
@@ -16,56 +16,53 @@ class _ViewNoteState extends State<ViewNote> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           "View Note",
-          style: TextStyle(fontSize: 24),
+          style: TextStyle(fontSize: 18),
         ),
         centerTitle: true,
       ),
       body: Container(
         width: double.infinity,
-        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 50),
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 50),
         child: Column(
           children: [
-            Text(
+            const Text(
               "Title",
               style: TextStyle(
-                  fontSize: 35,
+                  fontSize: 32,
                   fontWeight: FontWeight.w500,
                   color: Colors.blue),
             ),
-            SizedBox(
+            const SizedBox(
               height: 15,
             ),
             Text(
               "${widget.title}",
-              style: TextStyle(
-                fontSize: 25,
+              style: const TextStyle(
+                fontSize: 22,
                 fontWeight: FontWeight.w500,
               ),
               textAlign: TextAlign.center,
             ),
-            SizedBox(
-              height: 80,
+            const SizedBox(
+              height: 60,
             ),
-            Text(
+            const Text(
               "Note",
               style: TextStyle(
-                  fontSize: 35,
+                  fontSize: 32,
                   fontWeight: FontWeight.w500,
                   color: Colors.blue),
             ),
-            SizedBox(
+            const SizedBox(
               height: 15,
             ),
             Text(
               "${widget.note}",
-              style: TextStyle(
-                fontSize: 25,
-                fontWeight: FontWeight.w500,
-                height: 1.6
-              ),
-              textAlign: TextAlign.center,
+              style: const TextStyle(
+                  fontSize: 20, fontWeight: FontWeight.w500, height: 1.6),
+              textAlign: TextAlign.start,
             ),
           ],
         ),

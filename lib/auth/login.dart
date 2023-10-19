@@ -1,15 +1,10 @@
-// ignore_for_file: prefer_const_constructors, unused_import, prefer_const_literals_to_create_immutables, sort_child_properties_last, sized_box_for_whitespace, body_might_complete_normally_nullable, avoid_print, non_constant_identifier_names, unused_local_variable, use_build_context_synchronously, unused_element, unnecessary_brace_in_string_interps, dead_code, depend_on_referenced_packages
+// ignore_for_file:sort_child_properties_last, sized_box_for_whitespace, body_might_complete_normally_nullable, avoid_print, non_constant_identifier_names, unused_local_variable, use_build_context_synchronously, unused_element, unnecessary_brace_in_string_interps, dead_code, depend_on_referenced_packages
 
 import 'package:flutter/material.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
-import 'package:image_picker/image_picker.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -91,7 +86,7 @@ class _LoginState extends State<Login> {
       child: Scaffold(
         body: Container(
           width: double.infinity,
-          padding: EdgeInsets.all(15),
+          padding: const EdgeInsets.all(15),
           child: ListView(
             children: [
               Container(
@@ -100,18 +95,18 @@ class _LoginState extends State<Login> {
                   "assets/images/note.png",
                 ),
               ),
-              Text(
+              const Text(
                 "Login",
-                style: TextStyle(fontSize: 35, color: Colors.blue),
+                style: TextStyle(fontSize: 30, color: Colors.blue),
               ),
-              SizedBox(
-                height: 15,
+              const SizedBox(
+                height: 12,
               ),
               Text(
                 "Add Your Personal Information",
-                style: TextStyle(fontSize: 16, color: Colors.grey[700]),
+                style: TextStyle(fontSize: 14, color: Colors.grey[700]),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 30,
               ),
               Form(
@@ -127,16 +122,19 @@ class _LoginState extends State<Login> {
                         }
                       },
                       decoration: InputDecoration(
+                          contentPadding:
+                              const EdgeInsets.symmetric(vertical: 16),
                           hintText: "Enter Your Email",
-                          prefixIcon: Icon(
+                          hintStyle: const TextStyle(fontSize: 13),
+                          prefixIcon: const Icon(
                             Icons.email_outlined,
-                            size: 28,
+                            size: 25,
                           ),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(50),
                           )),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     TextFormField(
@@ -148,10 +146,13 @@ class _LoginState extends State<Login> {
                       },
                       obscureText: true,
                       decoration: InputDecoration(
+                          contentPadding:
+                              const EdgeInsets.symmetric(vertical: 16),
                           hintText: "Enter Your Password",
-                          prefixIcon: Icon(
+                          hintStyle: const TextStyle(fontSize: 13),
+                          prefixIcon: const Icon(
                             Icons.lock_outlined,
-                            size: 28,
+                            size: 25,
                           ),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(50),
@@ -160,48 +161,50 @@ class _LoginState extends State<Login> {
                   ],
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               Container(
-                child: Text(
+                child:  Text(
                   "Forget Password?",
-                  style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16),
+                  style: TextStyle(fontWeight: FontWeight.w500, fontSize: 13,color: Colors.grey[600],fontStyle: FontStyle.italic),
                 ),
                 alignment: Alignment.topRight,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 15,
               ),
               ElevatedButton(
-                onPressed: () async {
-                  await sign_in();
+                onPressed: ()  {
+                   sign_in();
                 },
-                child: Text(
+                child: const Text(
                   "Login",
-                  style: TextStyle(fontSize: 25),
+                  style: TextStyle(fontSize: 20),
                 ),
                 style: ButtonStyle(
+                  elevation: MaterialStateProperty.all(0.5),
+
                     padding: MaterialStateProperty.all(
-                      EdgeInsets.symmetric(vertical: 13.5),
+                      const EdgeInsets.symmetric(vertical: 13.5),
                     ),
                     shape: MaterialStateProperty.all(RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(50)))),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 15,
               ),
               ElevatedButton(
-                onPressed: () async {
-                  await google_sign_in();
+                onPressed: ()  {
+                   google_sign_in();
                 },
                 child: Row(
                   children: [
-                    Text(
+                    const Text(
                       "Login With Google",
-                      style: TextStyle(fontSize: 23, color: Colors.blue),
+                      style: TextStyle(fontSize: 16, color: Colors.blue),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 10,
                     ),
                     SvgPicture.asset(
@@ -212,31 +215,32 @@ class _LoginState extends State<Login> {
                   mainAxisAlignment: MainAxisAlignment.center,
                 ),
                 style: ButtonStyle(
+                  elevation: MaterialStateProperty.all(0.5),
                     backgroundColor: MaterialStateProperty.all(Colors.white),
                     padding: MaterialStateProperty.all(
-                      EdgeInsets.symmetric(vertical: 13.5),
+                      const EdgeInsets.symmetric(vertical: 13.5),
                     ),
                     shape: MaterialStateProperty.all(RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(50),
-                        side: BorderSide(color: Colors.blue)))),
+                        side: const BorderSide(color: Colors.blue)))),
               ),
-              SizedBox(
-                height: 20,
+              const SizedBox(
+                height: 25,
               ),
               Row(
                 children: [
-                  Text(
+                  const Text(
                     "Don't have An Account?  ",
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                    style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
                   ),
                   InkWell(
                     onTap: () {
                       Navigator.of(context).pushReplacementNamed("Register");
                     },
-                    child: Text(
+                    child: const Text(
                       "Register",
                       style: TextStyle(
-                          fontSize: 16,
+                          fontSize: 14,
                           fontWeight: FontWeight.w500,
                           color: Colors.blue,
                           decoration: TextDecoration.underline),
